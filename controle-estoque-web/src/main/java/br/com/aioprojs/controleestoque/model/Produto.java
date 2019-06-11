@@ -19,12 +19,22 @@ public class Produto {
 
 	@Id
 	private Long id;
-	@Getter @Setter private String nome;
-	@Getter @Setter private BigDecimal preco;
+	
+	@Getter @Setter 
+	private String nome;
+	
+	@Getter @Setter 
+	private BigDecimal preco;
+	
 	@DBRef
-	@Getter @Setter private CategoriaProduto categoria;
+	@Getter @Setter 
+	private CategoriaProduto categoria;
+	
 	@DBRef
-	@Getter @Setter private Fornecedor fornecedor;
+	@Getter @Setter 
+	private Fornecedor fornecedor;
+	
 	@DBRef
-	@Getter @Setter private Estoque estoque;
+	@Getter @Setter 
+	private Estoque estoque;
 }

@@ -17,9 +17,17 @@ public class Estoque {
 
 	@Id
 	private Long id;
-	@Getter @Setter private Integer quantidade;
-	@Getter @Setter private Integer minimo;
-	@Getter @Setter private Integer maximo;
+	
+	@Getter @Setter 
+	private int quantidade;
+	
+	@Getter @Setter 
+	private int minimo;
+	
+	@Getter @Setter 
+	private int maximo;
+	
 	@DBRef
-	@Getter @Setter private Produto produto;
+	@Getter @Setter 
+	private Produto produto;
 }

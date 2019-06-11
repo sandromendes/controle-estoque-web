@@ -30,6 +30,12 @@ public class CategoriaProdutoServiceImpl implements CategoriaProdutoService {
 
 	@Override
 	@Transactional
+	public void salvarListaCategoria(List<CategoriaProduto> lista) {
+		categoriaProdutoRepository.saveAll(lista);
+	}
+
+	@Override
+	@Transactional
 	public CategoriaProduto getCategoria(Long id) throws ResourceNotFoundException {
 		return categoriaProdutoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
@@ -39,5 +45,4 @@ public class CategoriaProdutoServiceImpl implements CategoriaProdutoService {
 	public void removerCategoria(Long id) throws ResourceNotFoundException {
 		categoriaProdutoRepository.deleteById(id);
 	}
-
 }

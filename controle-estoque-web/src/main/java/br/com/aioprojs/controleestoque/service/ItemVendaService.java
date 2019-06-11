@@ -11,6 +11,8 @@ public interface ItemVendaService {
 	
 	public void salvarItemVenda(ItemVenda item);
 	
+	public void salvarListaItemVenda(List<ItemVenda> lista);
+	
 	public ItemVenda getItemVenda(Long id) throws ResourceNotFoundException;
 	
 	public void removerItemVenda(Long id) throws ResourceNotFoundException;

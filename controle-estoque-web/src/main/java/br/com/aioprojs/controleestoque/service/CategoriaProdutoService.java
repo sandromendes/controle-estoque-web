@@ -11,6 +11,8 @@ public interface CategoriaProdutoService {
 	
 	public void salvarCategoria(CategoriaProduto categoria);
 	
+	public void salvarListaCategoria(List<CategoriaProduto> lista);
+	
 	public CategoriaProduto getCategoria(Long id) throws ResourceNotFoundException;
 	
 	public void removerCategoria(Long id) throws ResourceNotFoundException;

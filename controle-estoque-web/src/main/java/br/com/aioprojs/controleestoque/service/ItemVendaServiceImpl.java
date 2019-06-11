@@ -29,6 +29,11 @@ public class ItemVendaServiceImpl implements ItemVendaService {
 	}
 
 	@Override
+	public void salvarListaItemVenda(List<ItemVenda> lista) {
+		itemVendaRepository.saveAll(lista);
+	}
+
+	@Override
 	@Transactional
 	public ItemVenda getItemVenda(Long id) throws ResourceNotFoundException {
 		return itemVendaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
@@ -39,4 +44,5 @@ public class ItemVendaServiceImpl implements ItemVendaService {
 	public void removerItemVenda(Long id) throws ResourceNotFoundException {
 		itemVendaRepository.deleteById(id);
 	}
+
 }

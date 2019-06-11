@@ -16,5 +16,7 @@ public class CategoriaProduto {
 
 	@Id
 	private Long id;
-	@Getter @Setter private String nome;
+	
+	@Getter @Setter 
+	private String nome;
 }
