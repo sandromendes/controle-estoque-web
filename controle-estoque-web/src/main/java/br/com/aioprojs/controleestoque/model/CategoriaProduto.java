@@ -15,8 +15,7 @@ import lombok.ToString;
 public class CategoriaProduto {
 
 	@Id
-	private Long id;
-	
+	private Long id;	
 	@Getter @Setter 
 	private String nome;
 }
