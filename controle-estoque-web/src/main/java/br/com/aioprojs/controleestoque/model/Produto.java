@@ -6,39 +6,25 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
 @Document(collection = "produto")
+@NoArgsConstructor @AllArgsConstructor 
+@ToString
 public class Produto {
 
 	@Id
 	private Long id;
-	private String nome;
-	private BigDecimal preco;
+	@Getter @Setter private String nome;
+	@Getter @Setter private BigDecimal preco;
 	@DBRef
-	private CategoriaProduto categoria;
+	@Getter @Setter private CategoriaProduto categoria;
 	@DBRef
-	private Fornecedor fornecedor;
+	@Getter @Setter private Fornecedor fornecedor;
 	@DBRef
-	private Estoque estoque;
-
-	public Produto() {
-		super();
-	}
-
-	public Produto(Long id, String nome, BigDecimal preco, CategoriaProduto categoria, Fornecedor fornecedor,
-			Estoque estoque) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.preco = preco;
-		this.categoria = categoria;
-		this.fornecedor = fornecedor;
-		this.estoque = estoque;
-	}
+	@Getter @Setter private Estoque estoque;
 }

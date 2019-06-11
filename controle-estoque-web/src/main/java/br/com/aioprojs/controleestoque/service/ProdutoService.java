@@ -11,7 +11,7 @@ public interface ProdutoService {
 	
 	public void salvarProduto(Produto produto);
 	
-	public Produto getProduto(Long id);
+	public Produto getProduto(Long id) throws ResourceNotFoundException;
 	
 	public void removerProduto(Long id) throws ResourceNotFoundException;
 }

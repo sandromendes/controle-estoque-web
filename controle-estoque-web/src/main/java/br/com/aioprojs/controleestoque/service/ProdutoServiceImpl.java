@@ -14,7 +14,7 @@ import br.com.aioprojs.controleestoque.model.ProdutoRepository;
 public class ProdutoServiceImpl implements ProdutoService{
 
 	@Autowired
-	ProdutoRepository produtoRepository;
+	private ProdutoRepository produtoRepository;
 	
 	@Override
 	@Transactional
@@ -30,9 +30,8 @@ public class ProdutoServiceImpl implements ProdutoService{
 
 	@Override
 	@Transactional
-	public Produto getProduto(Long id) {
-		return null;
-		//return produtoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+	public Produto getProduto(Long id) throws ResourceNotFoundException {
+		return produtoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	@Override
