@@ -8,34 +8,63 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-@Document(collection = "venda")
-@NoArgsConstructor @AllArgsConstructor
-@ToString
+@Document(collection = "vendas")
 public class Venda {
 
 	@Id
 	private Long id;
-	
-	@Getter @Setter
 	private String protocolo;
-	
-	@Getter @Setter
 	private Date data;
-	
 	@DBRef
-	@Getter @Setter
 	private Cliente cliente;
-	
 	@DBRef
-	@Getter @Setter
 	private List<ItemVenda> listaItensVenda;
-	
-	@Getter @Setter
 	private BigDecimal total;
+
+	public Venda(Long id, String protocolo, Date data, Cliente cliente, List<ItemVenda> listaItensVenda,
+			BigDecimal total) {
+		super();
+		this.id = id;
+		this.protocolo = protocolo;
+		this.data = data;
+		this.cliente = cliente;
+		this.listaItensVenda = listaItensVenda;
+		this.total = total;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getProtocolo() {
+		return protocolo;
+	}
+	public void setProtocolo(String protocolo) {
+		this.protocolo = protocolo;
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public List<ItemVenda> getListaItensVenda() {
+		return listaItensVenda;
+	}
+	public void setListaItensVenda(List<ItemVenda> listaItensVenda) {
+		this.listaItensVenda = listaItensVenda;
+	}
+	public BigDecimal getTotal() {
+		return total;
+	}
+	public void setTotal(BigDecimal total) {
+		this.total = total;
+	}
 }

@@ -4,35 +4,79 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-@NoArgsConstructor @AllArgsConstructor
-@ToString
+@Document(collection = "itensvenda")
 public class ItemVenda {
 
 	@Id
 	private Long id;
-	
 	@DBRef
-	@Getter @Setter 
 	private List<Produto> listaProdutos;
-	
-	@Getter @Setter 
 	private int quantidade;
-	
-	@Getter @Setter 
 	private BigDecimal total;
-	
-	@Getter @Setter 
 	private BigDecimal desconto;
-	
-	@DBRef
-	@Getter @Setter 
+	@DBRef @Indexed
 	private Venda venda;
+
+	public ItemVenda(Long id, List<Produto> listaProdutos, int quantidade, BigDecimal total, BigDecimal desconto,
+			Venda venda) {
+		super();
+		this.id = id;
+		this.listaProdutos = listaProdutos;
+		this.quantidade = quantidade;
+		this.total = total;
+		this.desconto = desconto;
+		this.venda = venda;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Produto> getListaProdutos() {
+		return listaProdutos;
+	}
+
+	public void setListaProdutos(List<Produto> listaProdutos) {
+		this.listaProdutos = listaProdutos;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
+	}
+
+	public BigDecimal getDesconto() {
+		return desconto;
+	}
+
+	public void setDesconto(BigDecimal desconto) {
+		this.desconto = desconto;
+	}
+
+	public Venda getVenda() {
+		return venda;
+	}
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
+	}
 }

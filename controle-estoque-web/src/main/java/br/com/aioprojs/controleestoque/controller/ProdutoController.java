@@ -98,6 +98,7 @@ public class ProdutoController {
 		return "redirect:/produto/listar";
 	}
 	
+	@GetMapping("/categoria/deletarCategoria")
 	public String deletarCategoria(@RequestParam Long categoriaId) throws ResourceNotFoundException {
 		categoriaProdutoSercice.removerCategoria(categoriaId);
 		return "redirect:/produto/categoria/listar";

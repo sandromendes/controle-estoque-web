@@ -1,33 +1,78 @@
 package br.com.aioprojs.controleestoque.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-@Document
-@NoArgsConstructor @AllArgsConstructor
-@ToString
+@Document(collection = "estoques")
 public class Estoque {
 
 	@Id
 	private Long id;
-	
-	@Getter @Setter 
+	@Indexed
+	private String codigo;
 	private int quantidade;
-	
-	@Getter @Setter 
 	private int minimo;
-	
-	@Getter @Setter 
 	private int maximo;
-	
 	@DBRef
-	@Getter @Setter 
 	private Produto produto;
+
+	public Estoque(Long id, String codigo, int quantidade, int minimo, int maximo, Produto produto) {
+		super();
+		this.id = id;
+		this.codigo = codigo;
+		this.quantidade = quantidade;
+		this.minimo = minimo;
+		this.maximo = maximo;
+		this.produto = produto;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public int getMinimo() {
+		return minimo;
+	}
+
+	public void setMinimo(int minimo) {
+		this.minimo = minimo;
+	}
+
+	public int getMaximo() {
+		return maximo;
+	}
+
+	public void setMaximo(int maximo) {
+		this.maximo = maximo;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 }
