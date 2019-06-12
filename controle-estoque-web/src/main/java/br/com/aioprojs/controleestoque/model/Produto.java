@@ -20,7 +20,11 @@ public class Produto {
 	private Fornecedor fornecedor;
 	@DBRef @Indexed
 	private Estoque estoque;
-	
+
+	public Produto() {
+		super();
+	}
+
 	public Produto(Long id, String nome, BigDecimal preco, CategoriaProduto categoria, 
 			Fornecedor fornecedor, Estoque estoque) {
 		super();

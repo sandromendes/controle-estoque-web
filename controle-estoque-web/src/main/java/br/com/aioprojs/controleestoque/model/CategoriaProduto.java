@@ -9,6 +9,10 @@ public class CategoriaProduto {
 	@Id
 	private Long id;	
 	private String nome;
+	
+	public CategoriaProduto() {
+		super();
+	}
 
 	public CategoriaProduto(Long id, String nome) {
 		super();
