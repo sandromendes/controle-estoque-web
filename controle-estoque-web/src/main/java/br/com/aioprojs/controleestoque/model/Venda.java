@@ -21,6 +21,10 @@ public class Venda {
 	private List<ItemVenda> listaItensVenda;
 	private BigDecimal total;
 
+	public Venda() {
+		super();
+	}
+
 	public Venda(Long id, String protocolo, Date data, Cliente cliente, List<ItemVenda> listaItensVenda,
 			BigDecimal total) {
 		super();
