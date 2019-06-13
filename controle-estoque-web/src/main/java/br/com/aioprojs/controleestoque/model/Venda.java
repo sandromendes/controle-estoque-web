@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,7 +14,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Venda {
 
 	@Id private ObjectId databaseId;
-	private Integer id;
+	private Integer identificador;
+	@Indexed
 	private String protocolo;
 	private Date data;
 	@DBRef
@@ -29,7 +31,7 @@ public class Venda {
 	public Venda(Integer id, String protocolo, Date data, Cliente cliente, List<ItemVenda> listaItensVenda,
 			BigDecimal total) {
 		super();
-		this.id = id;
+		this.identificador = id;
 		this.protocolo = protocolo;
 		this.data = data;
 		this.cliente = cliente;
@@ -37,10 +39,10 @@ public class Venda {
 		this.total = total;
 	}
 	public Integer getId() {
-		return id;
+		return identificador;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		this.identificador = id;
 	}
 	public String getProtocolo() {
 		return protocolo;

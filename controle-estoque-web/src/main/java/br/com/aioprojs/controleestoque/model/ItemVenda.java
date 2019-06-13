@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ItemVenda {
 
 	@Id private ObjectId databaseId;
-	private Integer id;
+	private Integer identificador;
 	@DBRef
 	private List<Produto> listaProdutos;
 	private int quantidade;
@@ -25,7 +25,7 @@ public class ItemVenda {
 	public ItemVenda(Integer id, List<Produto> listaProdutos, int quantidade, BigDecimal total, BigDecimal desconto,
 			Venda venda) {
 		super();
-		this.id = id;
+		this.identificador = id;
 		this.listaProdutos = listaProdutos;
 		this.quantidade = quantidade;
 		this.total = total;
@@ -34,11 +34,11 @@ public class ItemVenda {
 	}
 
 	public Integer getId() {
-		return id;
+		return identificador;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.identificador = id;
 	}
 
 	public List<Produto> getListaProdutos() {

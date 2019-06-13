@@ -8,21 +8,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Fornecedor {
 
 	@Id private ObjectId databaseId;
-	private Integer id;
+	private Integer identificador;
 	private String nome;
 	
 	public Fornecedor(Integer id, String nome) {
 		super();
-		this.id = id;
+		this.identificador = id;
 		this.nome = nome;
 	}
 
 	public Integer getId() {
-		return id;
+		return identificador;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.identificador = id;
 	}
 
 	public String getNome() {

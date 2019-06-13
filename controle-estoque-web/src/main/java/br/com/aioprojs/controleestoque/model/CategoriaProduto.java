@@ -2,13 +2,15 @@ package br.com.aioprojs.controleestoque.model;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "categorias")
 public class CategoriaProduto {
 
 	@Id private ObjectId databaseId;
-	private Integer id;	
+	private Integer identificador;	
+	@Indexed
 	private String nome;
 	
 	public CategoriaProduto() {
@@ -17,16 +19,16 @@ public class CategoriaProduto {
 
 	public CategoriaProduto(Integer id, String nome) {
 		super();
-		this.id = id;
+		this.identificador = id;
 		this.nome = nome;
 	}
 
 	public Integer getId() {
-		return id;
+		return identificador;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.identificador = id;
 	}
 
 	public String getNome() {

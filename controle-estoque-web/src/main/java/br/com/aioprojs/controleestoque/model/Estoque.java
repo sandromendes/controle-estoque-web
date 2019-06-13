@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Estoque {
 
 	@Id private ObjectId databaseId;
-	private Integer id;
+	private Integer identificador;
 	@Indexed
 	private String codigo;
 	private int quantidade;
@@ -21,7 +21,7 @@ public class Estoque {
 
 	public Estoque(Integer id, String codigo, int quantidade, int minimo, int maximo, Produto produto) {
 		super();
-		this.id = id;
+		this.identificador = id;
 		this.codigo = codigo;
 		this.quantidade = quantidade;
 		this.minimo = minimo;
@@ -30,11 +30,11 @@ public class Estoque {
 	}
 
 	public Integer getId() {
-		return id;
+		return identificador;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.identificador = id;
 	}
 	
 	public String getCodigo() {

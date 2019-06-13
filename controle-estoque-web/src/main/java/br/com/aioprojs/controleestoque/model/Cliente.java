@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,7 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Cliente {
 
 	@Id private ObjectId databaseId;
-	private Integer id;
+	private Integer identificador;
+	@Indexed
 	private String nome;
 	private String telefone;
 	@DBRef
@@ -19,18 +21,18 @@ public class Cliente {
 
 	public Cliente(Integer id, String nome, String telefone, List<Venda> listaVendas) {
 		super();
-		this.id = id;
+		this.identificador = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.listaVendas = listaVendas;
 	}
 
 	public Integer getId() {
-		return id;
+		return identificador;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.identificador = id;
 	}
 
 	public String getNome() {

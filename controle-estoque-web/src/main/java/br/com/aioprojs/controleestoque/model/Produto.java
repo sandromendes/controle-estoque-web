@@ -8,11 +8,11 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "produto")
+@Document(collection = "produtos")
 public class Produto {
 
 	@Id private ObjectId databaseId;
-	private Integer id;
+	private Integer identificador;
 	private String nome;
 	private BigDecimal preco;
 	@DBRef @Indexed
@@ -29,7 +29,7 @@ public class Produto {
 	public Produto(Integer id, String nome, BigDecimal preco, CategoriaProduto categoria, 
 			Fornecedor fornecedor, Estoque estoque) {
 		super();
-		this.id = id;
+		this.identificador = id;
 		this.nome = nome;
 		this.preco = preco;
 		this.categoria = categoria;
@@ -38,11 +38,11 @@ public class Produto {
 	}
 
 	public Integer getId() {
-		return id;
+		return identificador;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.identificador = id;
 	}
 
 	public String getNome() {
