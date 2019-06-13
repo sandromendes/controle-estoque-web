@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,8 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "vendas")
 public class Venda {
 
-	@Id
-	private Long id;
+	@Id private ObjectId databaseId;
+	private Integer id;
 	private String protocolo;
 	private Date data;
 	@DBRef
@@ -25,7 +26,7 @@ public class Venda {
 		super();
 	}
 
-	public Venda(Long id, String protocolo, Date data, Cliente cliente, List<ItemVenda> listaItensVenda,
+	public Venda(Integer id, String protocolo, Date data, Cliente cliente, List<ItemVenda> listaItensVenda,
 			BigDecimal total) {
 		super();
 		this.id = id;
@@ -35,10 +36,10 @@ public class Venda {
 		this.listaItensVenda = listaItensVenda;
 		this.total = total;
 	}
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getProtocolo() {

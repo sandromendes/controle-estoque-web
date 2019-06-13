@@ -3,6 +3,7 @@ package br.com.aioprojs.controleestoque.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -11,8 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "itensvenda")
 public class ItemVenda {
 
-	@Id
-	private Long id;
+	@Id private ObjectId databaseId;
+	private Integer id;
 	@DBRef
 	private List<Produto> listaProdutos;
 	private int quantidade;
@@ -21,7 +22,7 @@ public class ItemVenda {
 	@DBRef @Indexed
 	private Venda venda;
 
-	public ItemVenda(Long id, List<Produto> listaProdutos, int quantidade, BigDecimal total, BigDecimal desconto,
+	public ItemVenda(Integer id, List<Produto> listaProdutos, int quantidade, BigDecimal total, BigDecimal desconto,
 			Venda venda) {
 		super();
 		this.id = id;
@@ -32,11 +33,11 @@ public class ItemVenda {
 		this.venda = venda;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

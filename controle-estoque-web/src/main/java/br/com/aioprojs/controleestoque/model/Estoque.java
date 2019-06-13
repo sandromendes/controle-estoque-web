@@ -1,5 +1,6 @@
 package br.com.aioprojs.controleestoque.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -8,8 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "estoques")
 public class Estoque {
 
-	@Id
-	private Long id;
+	@Id private ObjectId databaseId;
+	private Integer id;
 	@Indexed
 	private String codigo;
 	private int quantidade;
@@ -18,7 +19,7 @@ public class Estoque {
 	@DBRef
 	private Produto produto;
 
-	public Estoque(Long id, String codigo, int quantidade, int minimo, int maximo, Produto produto) {
+	public Estoque(Integer id, String codigo, int quantidade, int minimo, int maximo, Produto produto) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -28,11 +29,11 @@ public class Estoque {
 		this.produto = produto;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
