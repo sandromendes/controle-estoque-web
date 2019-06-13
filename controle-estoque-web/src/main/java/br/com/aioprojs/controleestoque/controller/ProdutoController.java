@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +21,7 @@ import br.com.aioprojs.controleestoque.service.CategoriaProdutoService;
 import br.com.aioprojs.controleestoque.service.ProdutoService;
 
 @Controller
+@RequestMapping("/")
 public class ProdutoController {
 
 	public static final Logger LOG = LoggerFactory.getLogger(ProdutoController.class);
@@ -30,13 +32,18 @@ public class ProdutoController {
 	@Autowired
 	private CategoriaProdutoService categoriaProdutoSercice;
 		
+	@GetMapping("/")
+	public String home(){
+		return "Página inicial.";
+	}
+
 	// Controle de produtos
-	
+
 	@GetMapping("/produtos/listar")
 	public ModelAndView listarProdutos() {
 		LOG.debug("Exibição da listagem de produtos.");
 
-		ModelAndView model = new ModelAndView("/produtos/listaProdutos");
+		ModelAndView model = new ModelAndView("/listaProdutos");
 		
 		List<Produto> listaProdutos = produtoService.getListaProdutos();
 		model.addObject("listaProdutos", listaProdutos);
@@ -48,7 +55,7 @@ public class ProdutoController {
 	public ModelAndView exibirFormProduto(Produto produto) {
 		LOG.debug("Formulário de cadastro de Produtos.");
 		
-		ModelAndView model = new ModelAndView("/produtos/formProduto");
+		ModelAndView model = new ModelAndView("/formProduto");
 		model.addObject("produto", produto);
 		
 		return model;
