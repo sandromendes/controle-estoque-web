@@ -21,11 +21,27 @@ public class ItemVenda {
 	private BigDecimal desconto;
 	@DBRef @Indexed
 	private Venda venda;
+	
+	public ItemVenda() {
+		super();
+	}
 
-	public ItemVenda(Integer id, List<Produto> listaProdutos, int quantidade, BigDecimal total, BigDecimal desconto,
-			Venda venda) {
+	public ItemVenda(Integer id, List<Produto> listaProdutos, int quantidade, 
+			BigDecimal total, BigDecimal desconto, Venda venda) {
 		super();
 		this.identificador = id;
+		this.listaProdutos = listaProdutos;
+		this.quantidade = quantidade;
+		this.total = total;
+		this.desconto = desconto;
+		this.venda = venda;
+	}
+
+	public ItemVenda(ObjectId databaseId, Integer identificador, List<Produto> listaProdutos, 
+			int quantidade, BigDecimal total, BigDecimal desconto, Venda venda) {
+		super();
+		this.databaseId = databaseId;
+		this.identificador = identificador;
 		this.listaProdutos = listaProdutos;
 		this.quantidade = quantidade;
 		this.total = total;

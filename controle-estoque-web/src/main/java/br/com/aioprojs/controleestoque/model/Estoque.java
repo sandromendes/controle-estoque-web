@@ -18,6 +18,10 @@ public class Estoque {
 	private int maximo;
 	@DBRef
 	private Produto produto;
+	
+	public Estoque() {
+		super();
+	}
 
 	public Estoque(Integer id, String codigo, int quantidade, int minimo, int maximo, Produto produto) {
 		super();
@@ -29,11 +33,31 @@ public class Estoque {
 		this.produto = produto;
 	}
 
-	public Integer getId() {
+	public Estoque(ObjectId databaseId, Integer identificador, String codigo, int quantidade, int minimo, int maximo,
+			Produto produto) {
+		super();
+		this.databaseId = databaseId;
+		this.identificador = identificador;
+		this.codigo = codigo;
+		this.quantidade = quantidade;
+		this.minimo = minimo;
+		this.maximo = maximo;
+		this.produto = produto;
+	}
+
+	public ObjectId getDatabaseId() {
+		return databaseId;
+	}
+
+	public void setDatabaseId(ObjectId databaseId) {
+		this.databaseId = databaseId;
+	}
+	
+	public Integer getIdentificador() {
 		return identificador;
 	}
 
-	public void setId(Integer id) {
+	public void setIdentificador(Integer id) {
 		this.identificador = id;
 	}
 	

@@ -2,6 +2,7 @@ package br.com.aioprojs.controleestoque.controller;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,11 +33,6 @@ public class ProdutoController {
 	
 	@Autowired
 	private CategoriaProdutoService categoriaProdutoSercice;
-		
-	@GetMapping("/")
-	public String home(){
-		return "Página inicial.";
-	}
 
 	// Controle de produtos
 
@@ -44,10 +41,9 @@ public class ProdutoController {
 		LOG.debug("Exibição da listagem de produtos.");
 
 		ModelAndView model = new ModelAndView("/listaProdutos");
-		
 		List<Produto> listaProdutos = produtoService.getListaProdutos();
 		model.addObject("listaProdutos", listaProdutos);
-		
+
 		return model;
 	}
 	
@@ -66,25 +62,22 @@ public class ProdutoController {
 		LOG.debug("Persistência do produto na base.");
 
 		produtoService.salvarProduto(produto);
-		
 		return new ModelAndView("redirect:/produtos/listar");
 	}
 
-	@GetMapping("/produtos/alterarProduto/{produtoId}")
-	public ModelAndView alterarProduto(@RequestParam Long produtoId) throws ResourceNotFoundException {
+	@GetMapping("/produtos/alterarProduto/{databaseId}")
+	public ModelAndView alterarProduto(@PathVariable("databaseId") ObjectId id) throws ResourceNotFoundException {
 		LOG.debug("Buscando produto para alteração.");
 
-		Produto produto = produtoService.getProduto(produtoId);
-		
+		Produto produto = produtoService.getProduto(id);
 		return exibirFormProduto(produto);
 	}
 
 	@GetMapping("/produtos/deletarProduto/{produtoId}")
-	public ModelAndView deletarProduto(@RequestParam Long produtoId) throws ResourceNotFoundException {
+	public ModelAndView deletarProduto(@PathVariable("produtoId") ObjectId produtoId) throws ResourceNotFoundException {
 		LOG.debug("Remoção de produto.");
 
 		produtoService.removerProduto(produtoId);
-		
 		return new ModelAndView("redirect:/produtos/listar");
 	}
 

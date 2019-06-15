@@ -12,15 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Produto {
 
 	@Id private ObjectId databaseId;
-	private Integer identificador;
-	private String nome;
+	@Indexed private Integer identificador;
+	@Indexed private String nome;
 	private BigDecimal preco;
-	@DBRef @Indexed
-	private CategoriaProduto categoria;
-	@DBRef @Indexed
-	private Fornecedor fornecedor;
-	@DBRef @Indexed
-	private Estoque estoque;
+	@DBRef private CategoriaProduto categoria;
+	@DBRef private Fornecedor fornecedor;
+	@DBRef private Estoque estoque;
 
 	public Produto() {
 		super();
@@ -37,11 +34,31 @@ public class Produto {
 		this.estoque = estoque;
 	}
 
-	public Integer getId() {
+	public Produto(ObjectId databaseId, Integer identificador, String nome, BigDecimal preco,
+			CategoriaProduto categoria, Fornecedor fornecedor, Estoque estoque) {
+		super();
+		this.databaseId = databaseId;
+		this.identificador = identificador;
+		this.nome = nome;
+		this.preco = preco;
+		this.categoria = categoria;
+		this.fornecedor = fornecedor;
+		this.estoque = estoque;
+	}
+
+	public ObjectId getDatabaseId() {
+		return databaseId;
+	}
+
+	public void setDatabaseId(ObjectId databaseId) {
+		this.databaseId = databaseId;
+	}
+
+	public Integer getIdentificador() {
 		return identificador;
 	}
 
-	public void setId(Integer id) {
+	public void setIdentificador(Integer id) {
 		this.identificador = id;
 	}
 
