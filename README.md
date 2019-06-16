@@ -1,10 +1,16 @@
 # Descrição:
 
+Este projeto é uma amostra simples de gerenciamento de estoques para fins de demonstração dos recursos do Spring Framework e utilização do banco de dados não-relacional MongoDB.
+Ele conta com telas de cadatro de fornecedores, clientes, produtos e estoque, também comtempla a movimentação de vendas de produtos que acarretam na diminuição do estoque. 
+Uma tela de adminsitração é outra funcionalidade para apoio de indicadores como, alertas de estoque mínimo e máximo de determinado produto, 
+totalizadores de vendas por mês e por categoria de produtos e relatórios gerais com filtros personalizados.
+
+Nas próximas versões serão entregues um controle de acesso, cadastramento de novos usuários e associações à perfis.
 
 # Ferramentas:
 
-Spring Tool Suite 4
-Robo 3T
+* Spring Tool Suite 4
+* Robo 3T
 
 # Tecnologias:
 
