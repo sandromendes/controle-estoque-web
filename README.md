@@ -33,10 +33,15 @@ Nas próximas versões serão entregues um controle de acesso, cadastramento de nov
 7. Selecione projeto "controle-estoque-web", clique com o botão direito e depois em "Import Projects"
 8. Selecione o projeto e clique em "Finish"
 
-# Visão geral das funcionalidades
+# Funcionalidades previstas
+
+* Cadastro de produtos e categorias de produtos
+* Cadastro de fornecedores e clientes
+* Realização de venda e controle por itens vendidos
+* Aplicação de desconto
+* Realização de venda mediante quantidade em estoque
+* Alertas de estoque mínimo e máximo atingidos
+* Relatórios de acompanhamento de vendas
+* Controle de usuários
 
 
-# Teste das funcionalidades
-
-
-# Carga inicial de dados para teste:
