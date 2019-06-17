@@ -16,7 +16,7 @@ import br.com.aioprojs.controleestoque.model.Venda;
 import br.com.aioprojs.controleestoque.service.ItemVendaService;
 import br.com.aioprojs.controleestoque.service.VendaService;
 
-@Controller
+@Controller("/venda")
 @RequestMapping("/venda")
 public class VendaController {
 

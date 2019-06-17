@@ -107,7 +107,7 @@ public class ProdutoController {
 	}
 	
 	@GetMapping("/categoria/exibirFormAlterar")
-	public String exibirFormAlterarCategoria(@RequestParam Long categoriaId, Model model) throws ResourceNotFoundException {
+	public String exibirFormAlterarCategoria(@RequestParam ObjectId categoriaId, Model model) throws ResourceNotFoundException {
 		CategoriaProduto categoriaProduto = categoriaProdutoSercice.getCategoria(categoriaId);
 		model.addAttribute("categoria", categoriaProduto);
 		
@@ -115,7 +115,7 @@ public class ProdutoController {
 	}
 	
 	@GetMapping("/categorias/deletarCategoria")
-	public String deletarCategoria(@RequestParam Long categoriaId) throws ResourceNotFoundException {
+	public String deletarCategoria(@RequestParam ObjectId categoriaId) throws ResourceNotFoundException {
 		categoriaProdutoSercice.removerCategoria(categoriaId);
 		return "redirect:/produto/categoria/listar";
 	}

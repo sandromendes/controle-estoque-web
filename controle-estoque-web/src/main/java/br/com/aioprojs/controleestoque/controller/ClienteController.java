@@ -15,14 +15,13 @@ import br.com.aioprojs.controleestoque.exception.ResourceNotFoundException;
 import br.com.aioprojs.controleestoque.model.Cliente;
 import br.com.aioprojs.controleestoque.service.ClienteService;
 
-@Controller
-@RequestMapping("/")
+@Controller("/cliente")
 public class ClienteController {
 	
 	@Autowired
-	ClienteService clienteService;
+	private ClienteService clienteService;
 
-	@RequestMapping(name = "/clientes/listar", method = RequestMethod.GET)
+	@RequestMapping(value = "/clientes/listar", method = RequestMethod.GET)
 	public ModelAndView listarClientes() {
 		List<Cliente> listaClientes = clienteService.getListaClientes();
 		
@@ -32,7 +31,7 @@ public class ClienteController {
 		return model;
 	}
 	
-	@RequestMapping(name = "/clientes/adicionarCliente")
+	@RequestMapping(value = "/clientes/adicionarCliente")
 	public ModelAndView exibirFormCliente(Cliente cliente) {
 		
 		ModelAndView model = new ModelAndView("/formCliente");
@@ -41,21 +40,21 @@ public class ClienteController {
 		return model;
 	}
 	
-	@RequestMapping(name = "/clientes/salvarCliente", method = RequestMethod.POST)
+	@RequestMapping(value = "/clientes/salvarCliente", method = RequestMethod.POST)
 	public ModelAndView salvarCliente(@ModelAttribute("cliente") Cliente cliente) {
 		
 		clienteService.salvarCliente(cliente);
 		return new ModelAndView("redirect:/clientes/listar");
 	}
 	
-	@RequestMapping(name = "/clientes/editarCliente/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/clientes/editarCliente/{id}", method = RequestMethod.GET)
 	public ModelAndView editarCliente(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
 		
 		Cliente cliente = clienteService.getCliente(id);
 		return exibirFormCliente(cliente);
 	}
 	
-	@RequestMapping(name = "/clientes/removerCliente", method = RequestMethod.GET)
+	@RequestMapping(value = "/clientes/removerCliente", method = RequestMethod.GET)
 	public ModelAndView removerCliente(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
 
 		clienteService.removerCliente(id);

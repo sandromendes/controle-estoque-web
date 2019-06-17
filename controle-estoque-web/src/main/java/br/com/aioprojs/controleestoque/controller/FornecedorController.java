@@ -9,14 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.aioprojs.controleestoque.exception.ResourceNotFoundException;
 import br.com.aioprojs.controleestoque.model.Fornecedor;
 import br.com.aioprojs.controleestoque.service.FornecedorService;
 
-@Controller
-@RequestMapping("/")
+@Controller("/fornecedor")
 public class FornecedorController {
 	
 	@Autowired
