@@ -2,6 +2,7 @@ package br.com.aioprojs.controleestoque.service;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,13 +31,13 @@ public class FornecedorServiceImpl implements FornecedorService {
 
 	@Override
 	@Transactional
-	public Fornecedor getFornecedor(Long id) throws ResourceNotFoundException {
+	public Fornecedor getFornecedor(ObjectId id) throws ResourceNotFoundException {
 		return fornecedorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	@Override
 	@Transactional
-	public void removerFornecedor(Long id) throws ResourceNotFoundException {
+	public void removerFornecedor(ObjectId id) throws ResourceNotFoundException {
 		fornecedorRepository.deleteById(id);
 	}
 

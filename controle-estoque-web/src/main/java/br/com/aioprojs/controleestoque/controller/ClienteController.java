@@ -16,13 +16,13 @@ import br.com.aioprojs.controleestoque.model.Cliente;
 import br.com.aioprojs.controleestoque.service.ClienteService;
 
 @Controller
-@RequestMapping("/cliente")
+@RequestMapping("/")
 public class ClienteController {
 	
 	@Autowired
 	ClienteService clienteService;
 
-	@RequestMapping(name = "/clientes/listarClientes", method = RequestMethod.GET)
+	@RequestMapping(name = "/clientes/listar", method = RequestMethod.GET)
 	public ModelAndView listarClientes() {
 		List<Cliente> listaClientes = clienteService.getListaClientes();
 		
@@ -43,22 +43,22 @@ public class ClienteController {
 	
 	@RequestMapping(name = "/clientes/salvarCliente", method = RequestMethod.POST)
 	public ModelAndView salvarCliente(@ModelAttribute("cliente") Cliente cliente) {
-		clienteService.salvarCliente(cliente);
 		
-		return new ModelAndView("redirect:/clientes/listarClientes");
+		clienteService.salvarCliente(cliente);
+		return new ModelAndView("redirect:/clientes/listar");
 	}
 	
-	@RequestMapping(name = "/clientes/alterarCliente/{databaseId}", method = RequestMethod.GET)
-	public ModelAndView alterarCliente(@PathVariable("databaseId") ObjectId databaseId) 
-			throws ResourceNotFoundException {
+	@RequestMapping(name = "/clientes/editarCliente/{id}", method = RequestMethod.GET)
+	public ModelAndView editarCliente(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
 		
-		Cliente cliente = clienteService.getCliente(databaseId);
+		Cliente cliente = clienteService.getCliente(id);
 		return exibirFormCliente(cliente);
 	}
 	
-	@RequestMapping(name = "/clientes/deletarProduto", method = RequestMethod.GET)
-	public ModelAndView deletarCliente() {
-		
-		return new ModelAndView("redirect:/clientes/listarClientes");
+	@RequestMapping(name = "/clientes/removerCliente", method = RequestMethod.GET)
+	public ModelAndView removerCliente(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
+
+		clienteService.removerCliente(id);
+		return new ModelAndView("redirect:/clientes/listar");
 	}
 }
