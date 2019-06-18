@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Controle de Estoque</title>
+	<link rel="stylesheet" type="text/css" href= "/css/bootstrap.min.css" />
 </head>
 <body>
+	<div class="container">
+		<div class="col-md-offset-1 col-md-10">
+			<h3 class="text-center">Tela de consulta de Fornecedores</h3>
+			<hr />
 
+			<input type="button" value="Adicionar Fornecedor" onclick="window.location.href='/fornecedor/adicionarFornecedor'; return false;" class="btn btn-primary" /> <br /> <br />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">Listagem dos Fornecedores</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped table-bordered">
+						<tr>
+							<th>Nome</th>
+							<th>Cidade</th>
+							<th>Telefone</th>
+							<th>Ação</th>
+						</tr>
+						<tr th:each="fornecedor : ${listaFornecedores}">
+							<td th:text="${fornecedor.nome}"></td>
+							<td th:text="${fornecedor.cidade}"></td>
+							<td th:text="${fornecedor.telefone}"></td>
+
+							<td> 
+								<div class="btn-group pull-right">
+									<a class="btn btn-sm btn-primary" th:href="@{/fornecedor/editarFornecedor/{id}(id=${fornecedor.id})}" >Editar</a>
+								   	<a class="delete btn btn-sm btn-danger" th:href="@{/fornecedor/removerFornecedor/{id}(id=${fornecedor.id})}">Excluir</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="footer">
+		<script type="text/javascript" src="/js/jquery-1.11.1.min.js" /></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js" /></script>
+	</div>
+	
 </body>
+
 </html>
