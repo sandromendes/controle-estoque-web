@@ -9,27 +9,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Fornecedor {
 
 	@Id private ObjectId databaseId;
-	@Indexed
-	private Integer identificador;
-	private String nome;
+	@Indexed private String nome;
+	@Indexed private String cidade;
+	private String telefone;
 	
 	public Fornecedor() {
 		super();
 	}
 
-	public Fornecedor(Integer id, String nome) {
-		super();
-		this.identificador = id;
-		this.nome = nome;
-	}
-
-	public Fornecedor(ObjectId databaseId, Integer identificador, String nome) {
+	public Fornecedor(ObjectId databaseId, String nome, String cidade, String telefone) {
 		super();
 		this.databaseId = databaseId;
-		this.identificador = identificador;
 		this.nome = nome;
+		this.cidade = cidade;
+		this.telefone = telefone;
 	}
-	
+
 	public ObjectId getDatabaseId() {
 		return databaseId;
 	}
@@ -38,19 +33,27 @@ public class Fornecedor {
 		this.databaseId = databaseId;
 	}
 
-	public Integer getIdentificador() {
-		return identificador;
-	}
-
-	public void setIdentificador(Integer id) {
-		this.identificador = id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 }
