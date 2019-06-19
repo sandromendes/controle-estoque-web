@@ -9,9 +9,9 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "produtos")
-public class Produto {
+public class Produto extends AbstractModel{
 
-	@Id private ObjectId databaseId;
+	@Id private ObjectId id;
 	@Indexed private Integer identificador;
 	@Indexed private String nome;
 	private BigDecimal preco;
@@ -34,10 +34,10 @@ public class Produto {
 		this.estoque = estoque;
 	}
 
-	public Produto(ObjectId databaseId, Integer identificador, String nome, BigDecimal preco,
+	public Produto(ObjectId id, Integer identificador, String nome, BigDecimal preco,
 			CategoriaProduto categoria, Fornecedor fornecedor, Estoque estoque) {
 		super();
-		this.databaseId = databaseId;
+		this.id = id;
 		this.identificador = identificador;
 		this.nome = nome;
 		this.preco = preco;
@@ -46,12 +46,12 @@ public class Produto {
 		this.estoque = estoque;
 	}
 
-	public ObjectId getDatabaseId() {
-		return databaseId;
+	public ObjectId getId() {
+		return id;
 	}
 
-	public void setDatabaseId(ObjectId databaseId) {
-		this.databaseId = databaseId;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public Integer getIdentificador() {

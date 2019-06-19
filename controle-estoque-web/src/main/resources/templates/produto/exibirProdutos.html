@@ -14,7 +14,7 @@
 			<h3 class="text-center">Tela de consulta de produtos</h3>
 			<hr />
 
-			<input type="button" value="Add Produto" onclick="window.location.href='adicionarProduto'; return false;" class="btn btn-primary" /> <br /> <br />
+			<input type="button" value="Add Produto" onclick="window.location.href='/produtos/adicionarProduto'; return false;" class="btn btn-primary" /> <br /> <br />
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="panel-title">Relação dos Produtos</div>
@@ -37,8 +37,8 @@
 							<td th:text="${produto.estoque.quantidade}"></td>
 							<td> 
 								<div class="btn-group pull-right">
-									<a class="btn btn-sm btn-primary" th:href="@{/produtos/alterarProduto/{produtoId}(produtoId=${produto.databaseId})}" >Editar</a>
-								   	<a class="delete btn btn-sm btn-danger" th:href="@{/produtos/deletaProduto/{produtoId}(produtoId=${produto.databaseId})}">Excluir</a>
+									<a class="btn btn-sm btn-primary" th:href="@{/produtos/editarProduto/{id}(produtoId=${produto.id})}" >Editar</a>
+								   	<a class="delete btn btn-sm btn-danger" th:href="@{/produtos/deletarProduto/{id}(produtoId=${produto.id})}">Excluir</a>
 								</div>
 							</td>
 						</tr>

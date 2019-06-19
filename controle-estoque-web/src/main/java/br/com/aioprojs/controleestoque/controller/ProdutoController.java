@@ -40,7 +40,7 @@ public class ProdutoController {
 	public ModelAndView listarProdutos() {
 		LOG.debug("Exibição da listagem de produtos.");
 
-		ModelAndView model = new ModelAndView("/listaProdutos");
+		ModelAndView model = new ModelAndView("/produto/exibirProdutos");
 		List<Produto> listaProdutos = produtoService.getListaProdutos();
 		model.addObject("listaProdutos", listaProdutos);
 
@@ -48,10 +48,23 @@ public class ProdutoController {
 	}
 	
 	@GetMapping("/produtos/adicionarProduto")
-	public ModelAndView exibirFormProduto(Produto produto) {
+	public ModelAndView exibirInclusaoProduto(Produto produto) {
 		LOG.debug("Formulário de cadastro de Produtos.");
 		
-		ModelAndView model = new ModelAndView("/formProduto");
+		ModelAndView model = new ModelAndView("/produto/incluirProduto");
+		model.addObject("produto", produto);
+		
+		List<CategoriaProduto> listaCategorias = categoriaProdutoSercice.getListaCategorias();
+		model.addObject("listaCategorias", listaCategorias);
+		
+		return model;
+	}
+
+	@GetMapping("/produtos/editarProduto")
+	public ModelAndView editarProduto(Produto produto) {
+		LOG.debug("Formulário de cadastro de Produtos.");
+		
+		ModelAndView model = new ModelAndView("/produto/incluirProduto");
 		model.addObject("produto", produto);
 		
 		return model;
@@ -65,16 +78,16 @@ public class ProdutoController {
 		return new ModelAndView("redirect:/produtos/listar");
 	}
 
-	@GetMapping("/produtos/alterarProduto/{databaseId}")
-	public ModelAndView alterarProduto(@PathVariable("databaseId") ObjectId id) throws ResourceNotFoundException {
+	@GetMapping("/produtos/alterarProduto/{id}")
+	public ModelAndView alterarProduto(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
 		LOG.debug("Buscando produto para alteração.");
 
 		Produto produto = produtoService.getProduto(id);
-		return exibirFormProduto(produto);
+		return exibirInclusaoProduto(produto);
 	}
 
-	@GetMapping("/produtos/deletarProduto/{produtoId}")
-	public ModelAndView deletarProduto(@PathVariable("produtoId") ObjectId produtoId) throws ResourceNotFoundException {
+	@GetMapping("/produtos/deletarProduto/{id}")
+	public ModelAndView deletarProduto(@PathVariable("id") ObjectId produtoId) throws ResourceNotFoundException {
 		LOG.debug("Remoção de produto.");
 
 		produtoService.removerProduto(produtoId);

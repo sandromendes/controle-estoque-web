@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "categorias")
 public class CategoriaProduto {
 
-	@Id private ObjectId databaseId;
+	@Id private ObjectId id;
 	private Integer identificador;	
 	@Indexed
 	private String nome;
@@ -29,20 +29,20 @@ public class CategoriaProduto {
 		this.listaProdutos = listaProdutos;
 	}
 	
-	public CategoriaProduto(ObjectId databaseId, Integer identificador, String nome, List<Produto> listaProdutos) {
+	public CategoriaProduto(ObjectId id, Integer identificador, String nome, List<Produto> listaProdutos) {
 		super();
-		this.databaseId = databaseId;
+		this.id = id;
 		this.identificador = identificador;
 		this.nome = nome;
 		this.listaProdutos = listaProdutos;
 	}
 	
-	public ObjectId getDatabaseId() {
-		return databaseId;
+	public ObjectId getId() {
+		return id;
 	}
 
-	public void setDatabaseId(ObjectId databaseId) {
-		this.databaseId = databaseId;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public Integer getIdentificador() {

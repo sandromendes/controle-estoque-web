@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Controle de Estoque</title>
+	<link rel="stylesheet" type="text/css" href= "/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-offset-2 col-md-7">
+			<h3 class="text-center">Formulário de cadastro de produtos</h3>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">Add Produto</div>
+				</div>
+				<div class="panel-body">
+					<form action="#" th:action="@{/produtos/salvarProduto}" class="form-horizontal" 
+					method="post" th:object="${produto}">
+
+						<!-- need to associate this data with produto id -->
+						<input type="hidden" th:field="*{id}"/>
+						<input type="hidden" th:field="*{categoria.id}"/>
+						<input type="hidden" th:field="*{fornecedor.id}"/>
+						<input type="hidden" th:field="*{estoque.id}"/>
+
+						<div class="form-group">
+							<label for="nome" class="col-md-3 control-label">Nome</label>
+							<div class="col-md-9">
+								<input th:field="*{nome}" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="preco" class="col-md-3 control-label">Preço</label>
+							<div class="col-md-9">
+								<input th:field="*{preco}" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="categoria" class="col-md-3 control-label">Categoria</label>			
+							<div class="col-md-9">
+							   	<select th:field="*{categoria}" class="form-control">
+							   	  <option value=""> -- </option>
+								  <option th:each="categoria : ${listaCategorias}" th:value="${categoria}" th:utext="${categoria}"> </option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="fornecedor" class="col-md3 control-label">Fornecedor</label>
+							<div class="col-md-9">
+								<input th:field="*{fornecedor.nome}" class="form-control"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-offset-3 col-md-9">
+								<button class="btn btn-primary">Confirmar</button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/js/jquery-3.4.1.min.js" /></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js" /></script>
+</body>
+</html>
