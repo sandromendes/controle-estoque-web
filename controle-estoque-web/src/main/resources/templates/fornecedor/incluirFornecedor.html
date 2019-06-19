@@ -11,17 +11,16 @@
 <body>
 	<div class="container">
 		<div class="col-md-offset-2 col-md-7">
-			<h3 class="text-center">Formulário de cadastro de clientes</h3>
+			<h3 class="text-center">Formulário de cadastro de fornecedores</h3>
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="panel-title">Editar dados do Cliente</div>
+					<div class="panel-title">Adicionar Fornecedor</div>
 				</div>
 				<div class="panel-body">
-					<form action="#" th:action="@{/clientes/salvarCliente}" class="form-horizontal" 
-					method="post" th:object="${cliente}">
+					<form action="#" th:action="@{/fornecedores/salvarFornecedor}" class="form-horizontal" 
+					method="post" th:object="${fornecedor}">
 
-						<input type="hidden" th:field="*{id}"/>
-
+						<!-- need to associate this data with produto id -->
 						<div class="form-group">
 							<label for="nome" class="col-md-3 control-label">Nome</label>
 							<div class="col-md-9">
@@ -29,21 +28,18 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="preco" class="col-md-3 control-label">Documento</label>
+							<label for="preco" class="col-md-3 control-label">Cidade</label>
 							<div class="col-md-9">
-								<input th:field="*{documento}" class="form-control" />
+							   	<select th:field="*{cidade}" class="form-control">
+							   	  <option value=""> -- </option>
+								  <option th:each="cidade : ${listaCidades}" th:value="${cidade}" th:utext="${cidade}"> </option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="preco" class="col-md-3 control-label">Telefone</label>
 							<div class="col-md-9">
 								<input th:field="*{telefone}" class="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="preco" class="col-md-3 control-label">E-mail</label>
-							<div class="col-md-9">
-								<input th:field="*{email}" class="form-control" />
 							</div>
 						</div>
 

@@ -6,9 +6,9 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "fornecedores")
-public class Fornecedor {
+public class Fornecedor extends AbstractModel{
 
-	@Id private ObjectId databaseId;
+	@Id private ObjectId id;
 	@Indexed private String nome;
 	@Indexed private String cidade;
 	private String telefone;
@@ -17,20 +17,20 @@ public class Fornecedor {
 		super();
 	}
 
-	public Fornecedor(ObjectId databaseId, String nome, String cidade, String telefone) {
+	public Fornecedor(ObjectId id, String nome, String cidade, String telefone) {
 		super();
-		this.databaseId = databaseId;
+		this.id = id;
 		this.nome = nome;
 		this.cidade = cidade;
 		this.telefone = telefone;
 	}
 
-	public ObjectId getDatabaseId() {
-		return databaseId;
+	public ObjectId getId() {
+		return id;
 	}
 
-	public void setDatabaseId(ObjectId databaseId) {
-		this.databaseId = databaseId;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public String getNome() {

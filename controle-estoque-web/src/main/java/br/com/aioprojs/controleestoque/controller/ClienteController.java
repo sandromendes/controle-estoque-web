@@ -52,6 +52,9 @@ public class ClienteController {
 	@RequestMapping(value = "/clientes/salvarCliente", method = RequestMethod.POST)
 	public ModelAndView salvarCliente(@ModelAttribute("cliente") Cliente cliente) {
 		
+		cliente.setCreatedDate();
+		cliente.setLastModifiedDate();
+		
 		clienteService.salvarCliente(cliente);
 		return new ModelAndView("redirect:/clientes/listar");
 	}

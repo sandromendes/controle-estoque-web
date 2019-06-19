@@ -22,6 +22,7 @@
 				<div class="panel-body">
 					<table class="table table-striped table-bordered">
 						<tr>
+							<th>Id</th>
 							<th>Nome</th>
 							<th>Documento</th>
 							<th>Telefone</th>
@@ -29,11 +30,11 @@
 							<th>Ação</th>
 						</tr>
 						<tr th:each="cliente : ${listaClientes}">
+							<td th:text="${cliente.id}"></td>
 							<td th:text="${cliente.nome}"></td>
 							<td th:text="${cliente.documento}"></td>
 							<td th:text="${cliente.telefone}"></td>
 							<td th:text="${cliente.email}"></td>
-
 							<td> 
 								<div class="btn-group pull-right">
 									<a class="btn btn-sm btn-primary" th:href="@{/clientes/editarCliente/{id}(id=${cliente.id})}" >Editar</a>

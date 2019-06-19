@@ -1,20 +1,32 @@
 package br.com.aioprojs.controleestoque.model;
 
-import java.sql.Date;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
+import java.util.Date;
 
 public abstract class AbstractModel {
 
-    @Id
-    private String id;
+    protected Date createdDate;
+    protected Date lastModifiedDate;
+    
+    public AbstractModel() {
+		super();
+	}
 
-    @CreatedDate
-    private Date createdDate;
-
-    @LastModifiedDate
-    private Date lastModifiedDate;
-
+	public AbstractModel(Date createdDate, Date lastModifiedDate) {
+		super();
+		this.createdDate = createdDate;
+		this.lastModifiedDate = lastModifiedDate;
+	}
+    
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate() {
+		if(this.createdDate == null) this.createdDate = new Date();
+	}
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+	public void setLastModifiedDate() {
+		this.lastModifiedDate = new Date();
+	}
 }

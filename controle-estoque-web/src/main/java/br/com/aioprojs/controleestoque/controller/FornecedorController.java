@@ -1,5 +1,6 @@
 package br.com.aioprojs.controleestoque.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -26,7 +27,7 @@ public class FornecedorController {
 		List<Fornecedor> fornecedores = fornecedorService.getListaFornecedores();
 		model.addAttribute("fornecedores", fornecedores);
 		
-		return "listaFornecedores";
+		return "/fornecedor/exibirFornecedores";
 	}
 	
 	@GetMapping("/fornecedores/adicionarFornecedor")
@@ -35,11 +36,26 @@ public class FornecedorController {
 		Fornecedor fornecedor = new Fornecedor();
 		model.addAttribute("fornecedor", fornecedor);
 		
-		return "formFornecedor";
+		List<String> listaCidades = this.getListaCidades();
+		model.addAttribute("listaCidades", listaCidades);
+		
+		return "/fornecedor/incluirFornecedor";
 	}
 	
+	private List<String> getListaCidades() {
+		List<String> listaCidades = new ArrayList<>();
+		listaCidades.add("Recife");
+		listaCidades.add("Rio de Janeiro");
+		listaCidades.add("São Paulo");
+		
+		return listaCidades;
+	}
+
 	@PostMapping("/fornecedores/salvarFornecedor")
 	public String salvarFornecedor(@ModelAttribute("fornecedor") Fornecedor fornecedor) {
+		
+		fornecedor.setCreatedDate();
+		fornecedor.setLastModifiedDate();
 		
 		fornecedorService.salvarFornecedor(fornecedor);
 		return "redirect:/fornecedores/listar";
@@ -51,10 +67,13 @@ public class FornecedorController {
 		Fornecedor fornecedor = fornecedorService.getFornecedor(id);
 		model.addAttribute("fornecedor", fornecedor);
 		
-		return "formFornecedor";
+		List<String> listaCidades = this.getListaCidades();
+		model.addAttribute("listaCidades", listaCidades);
+
+		return "/fornecedor/editarFornecedor";
 	}
 	
-	//Get Remover
+	@GetMapping("/fornecedores/removerFornecedor/{id}")
 	public String removerFornecedor(@ModelAttribute("id") ObjectId id) throws ResourceNotFoundException {
 		
 		fornecedorService.removerFornecedor(id);

@@ -9,15 +9,14 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "clientes")
-public class Cliente {
+public class Cliente extends AbstractModel {
 
-	@Id private ObjectId id;
+	@Id protected ObjectId id;
 	@Indexed private String nome;
 	@Indexed private String documento;
 	private String telefone;
 	private String email;
-	@DBRef
-	private List<Venda> listaVendas;
+	@DBRef private List<Venda> listaVendas;
 
 	public Cliente() {
 		super();
