@@ -39,6 +39,7 @@
 								<div class="btn-group pull-right">
 									<a class="btn btn-sm btn-primary" th:href="@{/produtos/editarProduto/{id}(produtoId=${produto.id})}" >Editar</a>
 								   	<a class="delete btn btn-sm btn-danger" th:href="@{/produtos/deletarProduto/{id}(produtoId=${produto.id})}">Excluir</a>
+								   	<a class="btn btn-sm btn-warning" th:href="@{/estoques/editarEstoque/{id}(id=${produto.estoque.id})}">Estoque</a>
 								</div>
 							</td>
 						</tr>

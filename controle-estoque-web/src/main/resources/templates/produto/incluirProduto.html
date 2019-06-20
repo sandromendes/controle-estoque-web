@@ -20,12 +20,6 @@
 					<form action="#" th:action="@{/produtos/salvarProduto}" class="form-horizontal" 
 					method="post" th:object="${produto}">
 
-						<!-- need to associate this data with produto id -->
-						<input type="hidden" th:field="*{id}"/>
-						<input type="hidden" th:field="*{categoria.id}"/>
-						<input type="hidden" th:field="*{fornecedor.id}"/>
-						<input type="hidden" th:field="*{estoque.id}"/>
-
 						<div class="form-group">
 							<label for="nome" class="col-md-3 control-label">Nome</label>
 							<div class="col-md-9">
@@ -43,14 +37,17 @@
 							<div class="col-md-9">
 							   	<select th:field="*{categoria}" class="form-control">
 							   	  <option value=""> -- </option>
-								  <option th:each="categoria : ${listaCategorias}" th:value="${categoria}" th:utext="${categoria}"> </option>
+								  <option th:each="categoria : ${listaCategorias}" th:value="${categoria.id}" th:utext="${categoria.nome}"> </option>
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="fornecedor" class="col-md3 control-label">Fornecedor</label>
 							<div class="col-md-9">
-								<input th:field="*{fornecedor.nome}" class="form-control"/>
+							   	<select th:field="*{fornecedor}" class="form-control">
+							   	  <option value=""> -- </option>
+								  <option th:each="fornecedor : ${listaFornecedores}" th:value="${fornecedor.id}" th:utext="${fornecedor.nome}"> </option>
+								</select>
 							</div>
 						</div>
 

@@ -18,8 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.aioprojs.controleestoque.exception.ResourceNotFoundException;
 import br.com.aioprojs.controleestoque.model.CategoriaProduto;
+import br.com.aioprojs.controleestoque.model.Estoque;
+import br.com.aioprojs.controleestoque.model.Fornecedor;
 import br.com.aioprojs.controleestoque.model.Produto;
 import br.com.aioprojs.controleestoque.service.CategoriaProdutoService;
+import br.com.aioprojs.controleestoque.service.EstoqueService;
+import br.com.aioprojs.controleestoque.service.FornecedorService;
 import br.com.aioprojs.controleestoque.service.ProdutoService;
 
 @Controller
@@ -28,12 +32,11 @@ public class ProdutoController {
 
 	public static final Logger LOG = LoggerFactory.getLogger(ProdutoController.class);
 	
-	@Autowired
-	private ProdutoService produtoService;
+	@Autowired private ProdutoService produtoService;
+	@Autowired private CategoriaProdutoService categoriaProdutoSercice;
+	@Autowired private FornecedorService fornecedorService;
+	@Autowired private EstoqueService estoqueService;
 	
-	@Autowired
-	private CategoriaProdutoService categoriaProdutoSercice;
-
 	// Controle de produtos
 
 	@GetMapping("/produtos/listar")
@@ -57,12 +60,14 @@ public class ProdutoController {
 		List<CategoriaProduto> listaCategorias = categoriaProdutoSercice.getListaCategorias();
 		model.addObject("listaCategorias", listaCategorias);
 		
+		List<Fornecedor> listaFornecedores = fornecedorService.getListaFornecedores();
+		model.addObject("listaFornecedores", listaFornecedores);
+		
 		return model;
 	}
 
 	@GetMapping("/produtos/editarProduto")
 	public ModelAndView editarProduto(Produto produto) {
-		LOG.debug("Formulário de cadastro de Produtos.");
 		
 		ModelAndView model = new ModelAndView("/produto/incluirProduto");
 		model.addObject("produto", produto);
@@ -74,6 +79,12 @@ public class ProdutoController {
 	public ModelAndView salvarProduto(@ModelAttribute("produto") Produto produto) {
 		LOG.debug("Persistência do produto na base.");
 
+		Estoque estoque = new Estoque();
+		estoque.setQuantidade(0);
+		estoque = (Estoque) estoqueService.salvarEstoque(estoque);
+		
+		produto.setEstoque(estoque);
+		
 		produtoService.salvarProduto(produto);
 		return new ModelAndView("redirect:/produtos/listar");
 	}
