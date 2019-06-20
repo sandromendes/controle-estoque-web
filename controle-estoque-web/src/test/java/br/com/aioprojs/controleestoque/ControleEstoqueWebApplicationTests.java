@@ -30,8 +30,8 @@ public class ControleEstoqueWebApplicationTests {
 	public void whenFindById_thenReturnProduto() {
 		
 		CategoriaProduto cereais = new CategoriaProduto();
-		cereais.setIdentificador(1002);
 		cereais.setNome("Cereais");
+		cereais.setDescricao("Grupo de alimentos perecíveis composto por grãos e sementes");
 		
 		testEntityManager.persist(cereais);
 		testEntityManager.flush();

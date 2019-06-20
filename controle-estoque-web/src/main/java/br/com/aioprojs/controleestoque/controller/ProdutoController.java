@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.aioprojs.controleestoque.exception.ResourceNotFoundException;
@@ -67,11 +66,17 @@ public class ProdutoController {
 	}
 
 	@GetMapping("/produtos/editarProduto")
-	public ModelAndView editarProduto(Produto produto) {
+	public ModelAndView exibirAlteracaoProduto(Produto produto) {
 		
 		ModelAndView model = new ModelAndView("/produto/incluirProduto");
 		model.addObject("produto", produto);
 		
+		List<CategoriaProduto> listaCategorias = categoriaProdutoSercice.getListaCategorias();
+		model.addObject("listaCategorias", listaCategorias);
+		
+		List<Fornecedor> listaFornecedores = fornecedorService.getListaFornecedores();
+		model.addObject("listaFornecedores", listaFornecedores);
+
 		return model;
 	}
 	
@@ -94,7 +99,7 @@ public class ProdutoController {
 		LOG.debug("Buscando produto para alteração.");
 
 		Produto produto = produtoService.getProduto(id);
-		return exibirInclusaoProduto(produto);
+		return exibirAlteracaoProduto(produto);
 	}
 
 	@GetMapping("/produtos/deletarProduto/{id}")
@@ -107,40 +112,40 @@ public class ProdutoController {
 
 	// Controle de categorias de produtos
 	
-	@GetMapping("/categorias/listaCategorias")
+	@GetMapping("/categorias/listar")
 	public String listarCategorias(Model model) {
 		List<CategoriaProduto> listaCategorias = categoriaProdutoSercice.getListaCategorias();
 		model.addAttribute("listaCategorias", listaCategorias);
 		
-		return "listaCategorias";
+		return "/categoria/exibirCategorias";
 	}
 	
-	@GetMapping("/categorias/exibirFormAdicionar")
+	@GetMapping("/categorias/adicionarCategoria")
 	public String exibirFormAdicionarCategoria(Model model) {
 		LOG.debug("Método para criação do formulário de cadastro de Categorias de Produtos.");
 		CategoriaProduto categoriaProduto = new CategoriaProduto();
-		model.addAttribute("categoriaProduto", categoriaProduto);
+		model.addAttribute("categoria", categoriaProduto);
 		
-		return "formCategoria";
+		return "/categoria/incluirCategoria";
 	}
 	
 	@PostMapping("/categorias/salvarCategoria")
 	public String salvarCategoria(@ModelAttribute("categoria") CategoriaProduto categoriaProduto) {
 		categoriaProdutoSercice.salvarCategoria(categoriaProduto);
-		return "redirect:/produto/categoria/listar";
+		return "redirect:/categorias/listar";
 	}
 	
-	@GetMapping("/categoria/exibirFormAlterar")
-	public String exibirFormAlterarCategoria(@RequestParam ObjectId categoriaId, Model model) throws ResourceNotFoundException {
-		CategoriaProduto categoriaProduto = categoriaProdutoSercice.getCategoria(categoriaId);
+	@GetMapping("/categorias/alterarCategoria/{id}")
+	public String exibirFormAlterarCategoria(@ModelAttribute("id") ObjectId id, Model model) throws ResourceNotFoundException {
+		CategoriaProduto categoriaProduto = categoriaProdutoSercice.getCategoria(id);
 		model.addAttribute("categoria", categoriaProduto);
 		
-		return "formCategoria";
+		return "/categoria/editarCategoria";
 	}
 	
-	@GetMapping("/categorias/deletarCategoria")
-	public String deletarCategoria(@RequestParam ObjectId categoriaId) throws ResourceNotFoundException {
-		categoriaProdutoSercice.removerCategoria(categoriaId);
-		return "redirect:/produto/categoria/listar";
+	@GetMapping("/categorias/removerCategoria/{id}")
+	public String deletarCategoria(@ModelAttribute("id") ObjectId id) throws ResourceNotFoundException {
+		categoriaProdutoSercice.removerCategoria(id);
+		return "redirect:/categorias/listar";
 	}
 }

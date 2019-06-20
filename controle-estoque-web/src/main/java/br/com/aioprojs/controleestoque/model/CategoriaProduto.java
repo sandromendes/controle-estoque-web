@@ -12,31 +12,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CategoriaProduto {
 
 	@Id private ObjectId id;
-	private Integer identificador;	
-	@Indexed
-	private String nome;
-	@DBRef
-	private List<Produto> listaProdutos;
+	@Indexed private String nome;
+	private String descricao;
+	@DBRef	private List<Produto> listaProdutos;
 	
 	public CategoriaProduto() {
 		super();
 	}
 
-	public CategoriaProduto(Integer identificador, String nome, List<Produto> listaProdutos) {
-		super();
-		this.identificador = identificador;
-		this.nome = nome;
-		this.listaProdutos = listaProdutos;
-	}
-	
-	public CategoriaProduto(ObjectId id, Integer identificador, String nome, List<Produto> listaProdutos) {
+	public CategoriaProduto(ObjectId id, String nome, String descricao, List<Produto> listaProdutos) {
 		super();
 		this.id = id;
-		this.identificador = identificador;
 		this.nome = nome;
+		this.descricao = descricao;
 		this.listaProdutos = listaProdutos;
 	}
-	
+
 	public ObjectId getId() {
 		return id;
 	}
@@ -45,20 +36,20 @@ public class CategoriaProduto {
 		this.id = id;
 	}
 
-	public Integer getIdentificador() {
-		return identificador;
-	}
-
-	public void setIdentificador(Integer id) {
-		this.identificador = id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public List<Produto> getListaProdutos() {

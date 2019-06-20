@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Controle de Estoque</title>
+	<link rel="stylesheet" type="text/css" href= "/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-offset-1 col-md-10">
+			<h3 class="text-center">Tela de consulta de categorias</h3>
+			<hr />
+
+			<input type="button" value="Adicionar Categoria" onclick="window.location.href='/categorias/adicionarCategoria'; return false;" class="btn btn-primary" /> <br /> <br />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">Listagem das Categorias</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped table-bordered">
+						<tr>
+							<th>Nome</th>
+							<th>Descrição</th>
+							<th>Ação</th>
+						</tr>
+						<tr th:each="categoria : ${listaCategorias}">
+							<td th:text="${categoria.nome}"></td>
+							<td th:text="${categoria.descricao}"></td>
+							<td> 
+								<div class="btn-group pull-right">
+									<a class="btn btn-sm btn-primary" th:href="@{/categorias/alterarCategoria/{id}(id=${categoria.id})}" >Editar</a>
+								   	<a class="delete btn btn-sm btn-danger" th:href="@{/categorias/removerCategoria/{id}(id=${categoria.id})}">Excluir</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="footer">
+		<script type="text/javascript" src="/js/jquery-1.11.1.min.js" /></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js" /></script>
+	</div>
+	
+</body>
+
+</html>
