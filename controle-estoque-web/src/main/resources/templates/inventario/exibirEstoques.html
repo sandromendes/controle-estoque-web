@@ -1,10 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Controle de Estoque</title>
+	<link rel="stylesheet" type="text/css" href= "/css/bootstrap.min.css" />
 </head>
 <body>
+	<div class="container">
+		<div class="col-md-offset-1 col-md-10">
+			<h3 class="text-center">Tela de monitoramento de inventário de produtos</h3>
+			<hr />
 
+			<button type="button" class="btn btn-primary" onclick="window.location.href='/produtos/listar'; return false;">Produtos</button>
+			<button type="button" class="btn btn-primary" onclick="window.location.href='/inventarios/listar'; return false;">Inventário</button>
+			<button type="button" class="btn btn-secondary" onclick="window.location.href='/categorias/listar'; return false;">Categorias</button>
+			<button type="button" class="btn btn-secondary" onclick="window.location.href='/fornecedores/listar'; return false;">Fornecedores</button>
+			<button type="button" class="btn btn-secondary" onclick="window.location.href='/clientes/listar'; return false;">Clientes</button>
+			<button type="button" class="btn btn-success" onclick="window.location.href='/vendas/listar'; return false;">Vendas</button>
+			<button type="button" class="btn btn-info" onclick="window.location.href='/admin/home'; return false;">Admin</button>
+
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">Listagem</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped table-bordered">
+						<tr>
+							<th>Lote</th>
+							<th>Quantidade</th>
+							<th>Mínimo</th>
+							<th>Máximo</th>
+							<th>Ação</th>
+						</tr>
+						<tr th:each="estoque : ${listaEstoques}">
+							<td th:text="${estoque.lote}"></td>
+							<td th:text="${estoque.quantidade}"></td>
+							<td th:text="${estoque.minimo}"></td>
+							<td th:text="${estoque.maximo}"></td>
+							<td> 
+								<div class="btn-group pull-right">
+								   	<a class="btn btn-sm btn-warning" th:href="@{/inventarios/editarEstoque/{id}(id=${estoque.id})}">Editar</a>
+								   	<a class="delete btn btn-sm btn-danger" th:href="@{/inventarios/removerEstoque/{id}(id=${estoque.id})}">Excluir</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="footer">
+		<script type="text/javascript" src="/js/jquery-1.11.1.min.js" /></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js" /></script>
+	</div>
+	
 </body>
+
 </html>

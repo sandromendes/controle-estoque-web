@@ -26,17 +26,8 @@ public class InventarioController {
 	public ModelAndView listarestoques() {
 		List<Estoque> listaestoques = estoqueService.getListaEstoques();
 		
-		ModelAndView model = new ModelAndView("/inventario/exibirestoques");
-		model.addObject("listaestoques", listaestoques);
-		
-		return model;
-	}
-	
-	@RequestMapping(value = "/inventarios/adicionarEstoque")
-	public ModelAndView exibirInclusaoEstoque(Estoque estoque) {
-		
-		ModelAndView model = new ModelAndView("/inventario/incluirEstoque");
-		model.addObject("estoque", estoque);
+		ModelAndView model = new ModelAndView("/inventario/exibirEstoques");
+		model.addObject("listaEstoques", listaestoques);
 		
 		return model;
 	}
@@ -73,7 +64,7 @@ public class InventarioController {
 	public ModelAndView removerEstoque(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
 
 		estoqueService.removerEstoque(id);
-		return new ModelAndView("redirect:/estoques/listar");
+		return new ModelAndView("redirect:/inventarios/listar");
 	}
 	
 }

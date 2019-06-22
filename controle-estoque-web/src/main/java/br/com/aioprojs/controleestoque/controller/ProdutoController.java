@@ -22,7 +22,6 @@ import br.com.aioprojs.controleestoque.model.Estoque;
 import br.com.aioprojs.controleestoque.model.Fornecedor;
 import br.com.aioprojs.controleestoque.model.Produto;
 import br.com.aioprojs.controleestoque.service.CategoriaProdutoService;
-import br.com.aioprojs.controleestoque.service.EstoqueService;
 import br.com.aioprojs.controleestoque.service.FornecedorService;
 import br.com.aioprojs.controleestoque.service.ProdutoService;
 
@@ -35,7 +34,6 @@ public class ProdutoController {
 	@Autowired private ProdutoService produtoService;
 	@Autowired private CategoriaProdutoService categoriaProdutoSercice;
 	@Autowired private FornecedorService fornecedorService;
-	@Autowired private EstoqueService estoqueService;
 	
 	// Controle de produtos
 
@@ -89,7 +87,6 @@ public class ProdutoController {
 			Estoque estoque = new Estoque();
 			estoque.setLote(UUID.randomUUID().toString());
 			estoque.setQuantidade(0);
-			estoque = (Estoque) estoqueService.salvarEstoque(estoque);			
 
 			produto.setEstoque(estoque);
 		}
