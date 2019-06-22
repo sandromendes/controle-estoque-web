@@ -1,6 +1,7 @@
 package br.com.aioprojs.controleestoque.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,49 +22,54 @@ public class InventarioController {
 	@Autowired
 	private EstoqueService estoqueService;
 
-	@RequestMapping(value = "/estoques/listar", method = RequestMethod.GET)
+	@RequestMapping(value = "/inventarios/listar", method = RequestMethod.GET)
 	public ModelAndView listarestoques() {
 		List<Estoque> listaestoques = estoqueService.getListaEstoques();
 		
-		ModelAndView model = new ModelAndView("/estoque/exibirestoques");
+		ModelAndView model = new ModelAndView("/inventario/exibirestoques");
 		model.addObject("listaestoques", listaestoques);
 		
 		return model;
 	}
 	
-	@RequestMapping(value = "/estoques/adicionarEstoque")
+	@RequestMapping(value = "/inventarios/adicionarEstoque")
 	public ModelAndView exibirInclusaoEstoque(Estoque estoque) {
 		
-		ModelAndView model = new ModelAndView("/estoque/incluirEstoque");
+		ModelAndView model = new ModelAndView("/inventario/incluirEstoque");
 		model.addObject("estoque", estoque);
 		
 		return model;
 	}
 	
-	@RequestMapping(value = "/estoques/alterarEstoque")
+	@RequestMapping(value = "/inventarios/alterarEstoque")
 	public ModelAndView exibirAlteracaoEstoque(Estoque estoque) {
 		
-		ModelAndView model = new ModelAndView("/estoque/editarEstoque");
+		ModelAndView model = new ModelAndView("/inventario/editarEstoque");
 		model.addObject("estoque", estoque);
 		
 		return model;
 	}
 	
-	@RequestMapping(value = "/estoques/salvarEstoque", method = RequestMethod.POST)
+	@RequestMapping(value = "/inventarios/salvarEstoque", method = RequestMethod.POST)
 	public ModelAndView salvarEstoque(@ModelAttribute("estoque") Estoque estoque) {
 		
 		estoqueService.salvarEstoque(estoque);
-		return new ModelAndView("redirect:/estoques/listar");
+		return new ModelAndView("redirect:/produtos/listar");
 	}
 	
-	@RequestMapping(value = "/estoques/editarEstoque/{id}", method = RequestMethod.GET)
-	public ModelAndView editarEstoque(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
-		
+	@RequestMapping(value = "/inventarios/editarEstoque/{id}", method = RequestMethod.GET)
+	public ModelAndView editarEstoque(@PathVariable("id") ObjectId id) 
+					throws ResourceNotFoundException {
 		Estoque estoque = estoqueService.getEstoque(id);
+		
+		if(estoque.getLote() == null) {
+			estoque.setLote(UUID.randomUUID().toString());
+		}
+		
 		return exibirAlteracaoEstoque(estoque);
 	}
 	
-	@RequestMapping(value = "/estoques/removerEstoque/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/inventarios/removerEstoque/{id}", method = RequestMethod.GET)
 	public ModelAndView removerEstoque(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
 
 		estoqueService.removerEstoque(id);

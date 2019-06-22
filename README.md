@@ -33,6 +33,28 @@ Nas próximas versões serão entregues um controle de acesso, cadastramento de nov
 7. Selecione projeto "controle-estoque-web", clique com o botão direito e depois em "Import Projects"
 8. Selecione o projeto e clique em "Finish"
 
+# Build
+
+* mvn clean install
+
+# Inicialização
+
+* mvn cargo:run
+
+Obs: Irá inicializar na porta '8082'
+
+# Access the pages using the URLs:
+
+* http://localhost:8080/produtos/listar
+* http://localhost:8080/produtos/adicionarProduto
+* http://localhost:8080/categoria/listar
+* http://localhost:8080/categorias/adicionarCategoria
+* http://localhost:8080/fornecedores/listar
+* http://localhost:8080/fornecedores/adicionarFornecedor
+* http://localhost:8080/inventarios/listar
+* http://localhost:8080/clientes/listar
+* http://localhost:8080/clientes/adicionarCliente
+
 # Funcionalidades previstas
 
 * Cadastro de produtos e categorias de produtos

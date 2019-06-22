@@ -10,9 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Estoque {
 
 	@Id private ObjectId id;
-	private Integer identificador;
-	@Indexed
-	private String codigo;
+	@Indexed private String lote;
+	private boolean bloqueado;
 	private int quantidade;
 	private int minimo;
 	private int maximo;
@@ -23,22 +22,12 @@ public class Estoque {
 		super();
 	}
 
-	public Estoque(Integer id, String codigo, int quantidade, int minimo, int maximo, Produto produto) {
-		super();
-		this.identificador = id;
-		this.codigo = codigo;
-		this.quantidade = quantidade;
-		this.minimo = minimo;
-		this.maximo = maximo;
-		this.produto = produto;
-	}
-
-	public Estoque(ObjectId id, Integer identificador, String codigo, int quantidade, int minimo, int maximo,
-			Produto produto) {
+	public Estoque(ObjectId id, String lote, boolean bloqueado, int quantidade, int minimo,
+			int maximo, Produto produto) {
 		super();
 		this.id = id;
-		this.identificador = identificador;
-		this.codigo = codigo;
+		this.lote = lote;
+		this.bloqueado = bloqueado;
 		this.quantidade = quantidade;
 		this.minimo = minimo;
 		this.maximo = maximo;
@@ -52,21 +41,21 @@ public class Estoque {
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
-
-	public Integer getIdentificador() {
-		return identificador;
-	}
-
-	public void setIdentificador(Integer id) {
-		this.identificador = id;
-	}
 	
-	public String getCodigo() {
-		return codigo;
+	public String getLote() {
+		return lote;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setLote(String codigoLote) {
+		this.lote = codigoLote;
+	}
+
+	public boolean isBloqueado() {
+		return bloqueado;
+	}
+
+	public void setBloqueado(boolean bloqueado) {
+		this.bloqueado = bloqueado;
 	}
 
 	public int getQuantidade() {

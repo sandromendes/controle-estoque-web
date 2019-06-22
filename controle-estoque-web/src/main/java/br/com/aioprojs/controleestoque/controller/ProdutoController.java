@@ -1,6 +1,7 @@
 package br.com.aioprojs.controleestoque.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
@@ -68,7 +69,7 @@ public class ProdutoController {
 	@GetMapping("/produtos/editarProduto")
 	public ModelAndView exibirAlteracaoProduto(Produto produto) {
 		
-		ModelAndView model = new ModelAndView("/produto/incluirProduto");
+		ModelAndView model = new ModelAndView("/produto/alterarProduto");
 		model.addObject("produto", produto);
 		
 		List<CategoriaProduto> listaCategorias = categoriaProdutoSercice.getListaCategorias();
@@ -84,11 +85,14 @@ public class ProdutoController {
 	public ModelAndView salvarProduto(@ModelAttribute("produto") Produto produto) {
 		LOG.debug("Persistência do produto na base.");
 
-		Estoque estoque = new Estoque();
-		estoque.setQuantidade(0);
-		estoque = (Estoque) estoqueService.salvarEstoque(estoque);
-		
-		produto.setEstoque(estoque);
+		if(produto.getEstoque() == null) {
+			Estoque estoque = new Estoque();
+			estoque.setLote(UUID.randomUUID().toString());
+			estoque.setQuantidade(0);
+			estoque = (Estoque) estoqueService.salvarEstoque(estoque);			
+
+			produto.setEstoque(estoque);
+		}
 		
 		produtoService.salvarProduto(produto);
 		return new ModelAndView("redirect:/produtos/listar");
@@ -103,10 +107,10 @@ public class ProdutoController {
 	}
 
 	@GetMapping("/produtos/deletarProduto/{id}")
-	public ModelAndView deletarProduto(@PathVariable("id") ObjectId produtoId) throws ResourceNotFoundException {
+	public ModelAndView deletarProduto(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
 		LOG.debug("Remoção de produto.");
 
-		produtoService.removerProduto(produtoId);
+		produtoService.removerProduto(id);
 		return new ModelAndView("redirect:/produtos/listar");
 	}
 
