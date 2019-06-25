@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.aioprojs.controleestoque.exception.ResourceNotFoundException;
@@ -16,8 +15,7 @@ import br.com.aioprojs.controleestoque.model.Venda;
 import br.com.aioprojs.controleestoque.service.ItemVendaService;
 import br.com.aioprojs.controleestoque.service.VendaService;
 
-@Controller("/venda")
-@RequestMapping("/venda")
+@Controller
 public class VendaController {
 
 	@Autowired
@@ -62,4 +60,6 @@ public class VendaController {
 		
 		return "redirect:/venda/listarVenda";
 	}
+	
+	// Shopping Cart
 }
