@@ -36,7 +36,6 @@ public class VendaController {
 	public String exibirFormularioInclusao(Model model) {
 		Venda venda = new Venda();
 		model.addAttribute("venda", venda);
-		
 		return "vendas-form";
 	}
 	
