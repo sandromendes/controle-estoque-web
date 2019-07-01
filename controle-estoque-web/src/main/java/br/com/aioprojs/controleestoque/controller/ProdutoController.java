@@ -48,6 +48,17 @@ public class ProdutoController {
 		return model;
 	}
 	
+	@GetMapping("/produtos/detalhar/{id}")
+	public ModelAndView detalharProduto(@PathVariable("id") ObjectId id) throws ResourceNotFoundException {
+		
+		Produto produto = produtoService.getProduto(id);
+		
+		ModelAndView model = new ModelAndView("/produto/detalharProduto");
+		model.addObject("produto", produto);
+		
+		return model;
+	}
+	
 	@GetMapping("/produtos/adicionarProduto")
 	public ModelAndView exibirInclusaoProduto(Produto produto) {
 		LOG.debug("Formulário de cadastro de Produtos.");

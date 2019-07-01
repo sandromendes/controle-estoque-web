@@ -37,6 +37,7 @@
 							<td th:text="${produto.estoque.quantidade}"></td>
 							<td> 
 								<div class="btn-group pull-right">
+									<a class="btn btn-sm btn-light" th:href="@{/produtos/detalhar/{id}(id=${produto.id})}" >Detalhar</a>
 									<a class="btn btn-sm btn-primary" th:href="@{/produtos/alterarProduto/{id}(id=${produto.id})}" >Editar</a>
 								   	<a class="delete btn btn-sm btn-danger" th:href="@{/produtos/deletarProduto/{id}(id=${produto.id})}">Excluir</a>
 								   	<a class="btn btn-sm btn-warning" th:href="@{/inventarios/editarEstoque/{id}(id=${produto.estoque.id})}">Estoque</a>
