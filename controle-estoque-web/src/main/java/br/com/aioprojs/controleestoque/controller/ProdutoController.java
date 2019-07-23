@@ -95,11 +95,11 @@ public class ProdutoController {
 		LOG.debug("Persistência do produto na base.");
 
 		if(produto.getEstoque() == null) {
-			Estoque estoque = new Estoque();
-			estoque.setLote(UUID.randomUUID().toString());
-			estoque.setQuantidade(0);
+			Estoque e = new Estoque();
+			e.setLote(UUID.randomUUID().toString());
+			e.setQuantidade(0);
 
-			produto.setEstoque(estoque);
+			produto.setEstoque(e);
 		}
 		
 		produtoService.salvarProduto(produto);
